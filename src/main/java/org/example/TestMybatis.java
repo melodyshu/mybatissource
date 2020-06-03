@@ -2,7 +2,9 @@ package org.example;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -28,8 +30,13 @@ public class TestMybatis {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     //4.根据statementId从Configuration中的map中获取MappedStatement对象
     //将查询操作交给executor执行器
-    List<User> userList = sqlSession.selectList("namespacetest.selectList");
+    //List<User> userList = sqlSession.selectList("namespacetest.selectList");
 
+    //带参数
+    Map<String,String> map=new HashMap<>();
+    map.put("name","张三");
+    map.put("address","湖北");
+    List<User> userList = sqlSession.selectList("namespacetest.selectList2",map);
     System.out.println(userList);
 
   }

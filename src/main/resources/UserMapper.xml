@@ -11,6 +11,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="selectList" resultMap="userResult">
        select name,address from tbs_user
-    </select>
+  </select>
+
+	<select id="selectList2" parameterType="java.util.Map" resultMap="userResult">
+       select name,address from tbs_user where name=#{name} and address=#{address}
+  </select>
 
 </mapper> 
