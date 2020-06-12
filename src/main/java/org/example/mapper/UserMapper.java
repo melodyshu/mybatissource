@@ -2,6 +2,9 @@ package org.example.mapper;
 
 import java.util.List;
 import java.util.Map;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.example.domain.User;
 
@@ -13,6 +16,13 @@ import org.example.domain.User;
 public interface UserMapper {
 
   List<User> selectList();
+
+  @Select("select name,address from tbs_user")
+  @Results(id="userResultx",value = {
+      @Result(property = "namex",column = "name"),
+      @Result(property = "addressx",column = "address")
+  })
+  List<User> selectAll();
 
   List<User> selectList2(Map<String, String> map);
 
